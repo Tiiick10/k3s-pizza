@@ -1,0 +1,73 @@
+[
+    {
+      "id": 1,
+      "name": "Margherita",
+      "price": 8,
+      "image": "src/img/margherita.jpg",
+      "ingredients": ["tomato", "mozzarella", "basil"]
+    },
+    {
+      "id": 2,
+      "name": "Pepperoni",
+      "price": 10,
+      "image": "src/img/pepperoni.webp",
+      "ingredients": ["tomato", "mozzarella", "pepperoni"]
+    },
+    {
+      "id": 3,
+      "name": "Four Cheese",
+      "price": 12,
+      "image": "src/img/4from.webp",
+      "ingredients": ["mozzarella", "parmesan", "gorgonzola", "goat cheese"]
+    },
+    {
+      "id": 4,
+      "name": "Hawaiian",
+      "price": 2000,
+      "image": "src/img/hawai.jpeg",
+      "ingredients": ["tomato", "mozzarella", "ham", "pineapple"]
+    },
+    {
+      "id": 5,
+      "name": "BBQ Chicken",
+      "price": 13,
+      "image": "src/img/BBQ-Chicken-Pizza.jpg",
+      "ingredients": ["chicken", "bbq sauce", "mozzarella", "red onion"]
+    },
+    {
+      "id": 6,
+      "name": "Vegetarian",
+      "price": 10,
+      "image": "src/img/vege.jpg",
+      "ingredients": ["tomato", "mozzarella", "bell peppers", "mushrooms", "onions", "olives"]
+    },
+    {
+      "id": 7,
+      "name": "Meat Lovers",
+      "price": 14,
+      "image": "src/img/meatlovers.jpg",
+      "ingredients": ["pepperoni", "sausage", "bacon", "ham", "mozzarella"]
+    },
+    {
+      "id": 8,
+      "name": "Seafood Supreme",
+      "price": 15,
+      "image": "src/img/seafood.jpeg",
+      "ingredients": ["shrimp", "mussels", "mozzarella", "tomato", "garlic"]
+    },
+    {
+      "id": 9,
+      "name": "Buffalo Chicken",
+      "price": 13,
+      "image": "src/img/buffalo-chicken.jpg",
+      "ingredients": ["chicken", "buffalo sauce", "mozzarella", "celery"]
+    },
+    {
+      "id": 10,
+      "name": "Prosciutto and Arugula",
+      "price": 16,
+      "image": "src/img/pizza_prosciutto_arugula.jpg",
+      "ingredients": ["prosciutto", "mozzarella", "arugula", "parmesan"]
+    }
+  ]
+  
