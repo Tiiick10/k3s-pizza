@@ -10,7 +10,7 @@ const ingredientsList = [
   { name: "Jambon", price: 2.5 },
   { name: "Tomates", price: 1 },
   { name: "Olives", price: 1.5 },
-  { name: "Ananas 🍍", price: 2 },
+  { name: "Ananas", price: 2000 },
 ];
 
 export default function CustomPizza () {
@@ -34,7 +34,6 @@ export default function CustomPizza () {
       name: "Pizza personnalisée",
       ingredients: selectedIngredients.map(i => i.name),
       price: basePrice,
-      image: "https://source.unsplash.com/400x300/?pizza",
     };
     dispatch(addPizza(newPizza));
   };

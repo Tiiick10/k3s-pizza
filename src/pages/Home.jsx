@@ -1,11 +1,10 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import pizzasData from "../data/pizzas.json";
-import "./Home.css";
-import Footer from "../components/Footer/Footer";
+import { useState } from "react"
+import { Link } from "react-router-dom"
+import pizzasData from "../data/pizzas.json"
+import "./Home.css"
 
 export default function Home() {
-  const [pizzas] = useState(pizzasData);
+  const [pizzas] = useState(pizzasData)
 
   return (
     <div className="home">
@@ -41,7 +40,6 @@ export default function Home() {
           )}
         </div>
       </div>
-      <Footer />
     </div>
-  );
+  )
 }
