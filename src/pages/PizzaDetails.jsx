@@ -13,9 +13,7 @@ export default function PizzaDetails() {
   const dispatch = useDispatch()
 
   const [quantity, setQuantity] = useState(1)
-  const [selectedIngredients, setSelectedIngredients] = useState([
-    ...pizza.ingredients,
-  ])
+  const [selectedIngredients, setSelectedIngredients] = useState([...pizza.ingredients])
   const [removedIngredients, setRemovedIngredients] = useState([])
 
   const ingredientsList = [
@@ -27,26 +25,22 @@ export default function PizzaDetails() {
     { name: "Ananas", price: 2000 },
   ]
 
-  // Calcul du total
-
   const calculatePrice = () => {
     const extraPrice = selectedIngredients.reduce((total, ingredient) => {
-      const foundIngredient = ingredientsList.find(
-        (i) => i.name === ingredient
-      )
+      const foundIngredient = ingredientsList.find((i) => i.name === ingredient)
       return total + (foundIngredient ? foundIngredient.price : 0)
     }, 0)
     return pizza.price + extraPrice
   }
 
-  // Permet de créer une clé pour ajouter =/= variantes de la même pizza
+  // Générer une clé unique pour différencier les variantes de pizza
 
   const uniquePizzaKey = () => {
     const sortedIngredients = [...selectedIngredients].sort()
     return `${pizza.name}-${sortedIngredients.join("-")}`
   }
 
-  // Gérer l'ajout de pizza avec la quantité et les ingrédients
+  // Ajout au panier + Reset des ingrédients
 
   const handleAddToCart = () => {
     const pizzaWithQuantity = {
@@ -56,14 +50,22 @@ export default function PizzaDetails() {
       price: calculatePrice() * quantity,
       uniqueKey: uniquePizzaKey(),
     }
+
     dispatch(addPizza(pizzaWithQuantity))
+    resetPizzaConfig() // Reset après ajout au panier
+  }
+
+  // Reset des ingrédients et de la quantité
+
+  const resetPizzaConfig = () => {
+    setQuantity(1)
+    setSelectedIngredients([...pizza.ingredients])
+    setRemovedIngredients([])
   }
 
   const toggleIngredient = (ingredient) => {
     if (selectedIngredients.includes(ingredient)) {
-      setSelectedIngredients(
-        selectedIngredients.filter((i) => i !== ingredient)
-      )
+      setSelectedIngredients(selectedIngredients.filter((i) => i !== ingredient))
     } else {
       setSelectedIngredients([...selectedIngredients, ingredient])
     }
@@ -115,9 +117,7 @@ export default function PizzaDetails() {
           <h3>Ingrédients supplémentaires :</h3>
           {ingredientsList.map((ingredient) => (
             <label key={ingredient.name} className="ingredient-item">
-              <span>
-                {ingredient.name} ( + {ingredient.price} € )
-              </span>
+              <span>{ingredient.name} ( + {ingredient.price} € )</span>
               <input
                 type="checkbox"
                 checked={selectedIngredients.includes(ingredient.name)}
@@ -128,20 +128,16 @@ export default function PizzaDetails() {
         </div>
 
         {/* Ingrédients de base */}
-
+        
         <div className="ingredients-base">
           <h3>Ingrédients de la pizza de base :</h3>
           {pizza.ingredients.map((baseIngredient) => (
             <div
               key={baseIngredient}
-              className={`ingredient-item ${
-                removedIngredients.includes(baseIngredient) ? "removed" : ""
-              }`}
+              className={`ingredient-item ${removedIngredients.includes(baseIngredient) ? "removed" : ""}`}
             >
               <span>{baseIngredient}</span>
-              <button onClick={() => removeBaseIngredient(baseIngredient)}>
-                Retirer
-              </button>
+              <button onClick={() => removeBaseIngredient(baseIngredient)}>Retirer</button>
             </div>
           ))}
         </div>
