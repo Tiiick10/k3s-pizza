@@ -141,12 +141,13 @@ export default function PizzaDetails() {
             </div>
           ))}
         </div>
-        
+
       </div>
 
       <button onClick={handleAddToCart} className="add-to-cart-btn">
         Ajouter au panier 🛒
       </button>
+      
     </motion.div>
   )
 }
