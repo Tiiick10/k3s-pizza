@@ -5,12 +5,14 @@ import { motion } from "framer-motion"
 import "./CustomPizza.css"
 
 const ingredientsList = [
-  { name: "Fromage", price: 1.5 },
-  { name: "Champignons", price: 2 },
-  { name: "Jambon", price: 2.5 },
-  { name: "Tomates", price: 1 },
-  { name: "Olives", price: 1.5 },
-  { name: "Ananas", price: 2000 },
+  { name: "fromage", price: 1.5 },
+  { name: "chevre", price: 2 },
+  { name: "miel", price: 1.5 },
+  { name: "champignons", price: 2 },
+  { name: "jambon", price: 2.5 },
+  { name: "tomates", price: 1 },
+  { name: "olives", price: 1.5 },
+  { name: "ananas", price: 2000 },
 ]
 
 export default function CustomPizza() {
