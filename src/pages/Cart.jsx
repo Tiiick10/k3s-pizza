@@ -33,7 +33,7 @@ export default function Cart() {
             {/* Boutons + et - */}
             <div className="cart-quantity-controls">
               <button
-                onClick={() => dispatch(removePizza(pizza.id))}
+                onClick={() => dispatch(removePizza(pizza.uniqueKey))}
                 className="quantity-btn"
               >
                 ➖

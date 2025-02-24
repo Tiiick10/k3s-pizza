@@ -3,18 +3,19 @@ import { useDispatch, useSelector } from "react-redux"
 import { addPizza } from "../redux/cartslice"
 import { motion } from "framer-motion"
 import { useState, useEffect } from "react"
-import './PizzaDetails.css'
+import "./PizzaDetails.css"
 
-export default function PizzaDetails () {
+export default function PizzaDetails() {
   const { id } = useParams()
-  const pizza = useSelector(state =>
-    state.pizza.list.find(p => p.id === Number(id))
-    
+  const pizza = useSelector((state) =>
+    state.pizza.list.find((p) => p.id === Number(id))
   )
   const dispatch = useDispatch()
 
   const [quantity, setQuantity] = useState(1)
-  const [selectedIngredients, setSelectedIngredients] = useState([...pizza.ingredients])
+  const [selectedIngredients, setSelectedIngredients] = useState([
+    ...pizza.ingredients,
+  ])
   const [removedIngredients, setRemovedIngredients] = useState([])
 
   const ingredientsList = [
@@ -30,7 +31,9 @@ export default function PizzaDetails () {
 
   const calculatePrice = () => {
     const extraPrice = selectedIngredients.reduce((total, ingredient) => {
-      const foundIngredient = ingredientsList.find(i => i.name === ingredient)
+      const foundIngredient = ingredientsList.find(
+        (i) => i.name === ingredient
+      )
       return total + (foundIngredient ? foundIngredient.price : 0)
     }, 0)
     return pizza.price + extraPrice
@@ -40,7 +43,7 @@ export default function PizzaDetails () {
 
   const uniquePizzaKey = () => {
     const sortedIngredients = [...selectedIngredients].sort()
-    return `${pizza.name}-${sortedIngredients.join('-')}`
+    return `${pizza.name}-${sortedIngredients.join("-")}`
   }
 
   // Gérer l'ajout de pizza avec la quantité et les ingrédients
@@ -58,7 +61,9 @@ export default function PizzaDetails () {
 
   const toggleIngredient = (ingredient) => {
     if (selectedIngredients.includes(ingredient)) {
-      setSelectedIngredients(selectedIngredients.filter(i => i !== ingredient))
+      setSelectedIngredients(
+        selectedIngredients.filter((i) => i !== ingredient)
+      )
     } else {
       setSelectedIngredients([...selectedIngredients, ingredient])
     }
@@ -70,7 +75,7 @@ export default function PizzaDetails () {
 
   const removeBaseIngredient = (ingredient) => {
     setRemovedIngredients([...removedIngredients, ingredient])
-    setSelectedIngredients(selectedIngredients.filter(i => i !== ingredient))
+    setSelectedIngredients(selectedIngredients.filter((i) => i !== ingredient))
   }
 
   useEffect(() => {
@@ -95,39 +100,54 @@ export default function PizzaDetails () {
       <p className="pizza-price">Prix: {calculatePrice() * quantity} € </p>
 
       {/* Sélecteur de quantité */}
-      
+
       <div className="quantity-selector">
         <button onClick={() => handleQuantityChange(quantity - 1)}>-</button>
         <span>{quantity}</span>
         <button onClick={() => handleQuantityChange(quantity + 1)}>+</button>
       </div>
 
-      <div className="ingredients-list">
-        <h3>Ingrédients supplémentaires :</h3>
-        {ingredientsList.map((ingredient) => (
-          <label key={ingredient.name} className="ingredient-item">
-            <span>{ingredient.name} ( + {ingredient.price} € )</span>
-            <input
-              type="checkbox"
-              checked={selectedIngredients.includes(ingredient.name)}
-              onChange={() => toggleIngredient(ingredient.name)}
-            />
-          </label>
-        ))}
+      <div className="ingredients-container">
 
-        <h3>Ingrédients de la pizza de base :</h3>
-        {pizza.ingredients.map((baseIngredient) => (
-          <div key={baseIngredient} className={`ingredient-item ${removedIngredients.includes(baseIngredient) ? 'removed' : ''}`}>
-            <span>{baseIngredient}</span>
-            <button onClick={() => removeBaseIngredient(baseIngredient)}>Retirer</button>
-          </div>
-        ))}
+        {/* Ingrédients supplémentaires */}
+        
+        <div className="ingredients-extra">
+          <h3>Ingrédients supplémentaires :</h3>
+          {ingredientsList.map((ingredient) => (
+            <label key={ingredient.name} className="ingredient-item">
+              <span>
+                {ingredient.name} ( + {ingredient.price} € )
+              </span>
+              <input
+                type="checkbox"
+                checked={selectedIngredients.includes(ingredient.name)}
+                onChange={() => toggleIngredient(ingredient.name)}
+              />
+            </label>
+          ))}
+        </div>
+
+        {/* Ingrédients de base */}
+
+        <div className="ingredients-base">
+          <h3>Ingrédients de la pizza de base :</h3>
+          {pizza.ingredients.map((baseIngredient) => (
+            <div
+              key={baseIngredient}
+              className={`ingredient-item ${
+                removedIngredients.includes(baseIngredient) ? "removed" : ""
+              }`}
+            >
+              <span>{baseIngredient}</span>
+              <button onClick={() => removeBaseIngredient(baseIngredient)}>
+                Retirer
+              </button>
+            </div>
+          ))}
+        </div>
       </div>
 
-      <button
-        onClick={handleAddToCart}
-        className="add-to-cart-btn"
-      >
+      <button onClick={handleAddToCart} className="add-to-cart-btn">
         Ajouter au panier 🛒
       </button>
     </motion.div>

@@ -84,16 +84,33 @@
   background-color: #c0392b;
 }
 
-.ingredients-list {
+.ingredients-container {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+  max-width: 600px;
   margin-bottom: 20px;
+}
+
+.ingredients-extra,
+.ingredients-base {
+  flex: 1;
+  background-color: #f9f9f9;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.ingredients-extra h3,
+.ingredients-base h3 {
+  text-align: center;
+  color: #333;
 }
 
 .ingredient-item {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 10px;
   margin-bottom: 10px;
 }
 
