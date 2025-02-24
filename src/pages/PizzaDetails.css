@@ -63,3 +63,53 @@
 .add-to-cart-btn:active {
   transform: scale(0.98);
 }
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.quantity-selector button {
+  padding: 5px 10px;
+  font-size: 1.2rem;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.quantity-selector button:hover {
+  background-color: #c0392b;
+}
+
+.ingredients-list {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.ingredient-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.ingredient-item button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.ingredient-item button:hover {
+  background-color: #c0392b;
+}
+
+.ingredient-item.removed span {
+  text-decoration: line-through;
+  color: gray;
+}

@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addPizza } from "../redux/cartslice";
-import { motion } from "framer-motion";
-import './CustomPizza.css'
+import { useState } from "react"
+import { useDispatch } from "react-redux"
+import { addPizza } from "../redux/cartslice"
+import { motion } from "framer-motion"
+import "./CustomPizza.css"
 
 const ingredientsList = [
   { name: "Fromage", price: 1.5 },
@@ -11,32 +11,34 @@ const ingredientsList = [
   { name: "Tomates", price: 1 },
   { name: "Olives", price: 1.5 },
   { name: "Ananas", price: 2000 },
-];
+]
 
-export default function CustomPizza () {
-  const [selectedIngredients, setSelectedIngredients] = useState([]);
-  const [basePrice, setBasePrice] = useState(5);
-  const dispatch = useDispatch();
+export default function CustomPizza() {
+  const [selectedIngredients, setSelectedIngredients] = useState([])
+  const [basePrice, setBasePrice] = useState(5)
+  const dispatch = useDispatch()
 
   const toggleIngredient = (ingredient) => {
     if (selectedIngredients.includes(ingredient)) {
-      setSelectedIngredients(selectedIngredients.filter(i => i !== ingredient));
-      setBasePrice(basePrice - ingredient.price);
+      setSelectedIngredients(
+        selectedIngredients.filter((i) => i !== ingredient)
+      )
+      setBasePrice(basePrice - ingredient.price)
     } else {
-      setSelectedIngredients([...selectedIngredients, ingredient]);
-      setBasePrice(basePrice + ingredient.price);
+      setSelectedIngredients([...selectedIngredients, ingredient])
+      setBasePrice(basePrice + ingredient.price)
     }
-  };
+  }
 
   const handleAddToCart = () => {
     const newPizza = {
       id: Date.now(),
       name: "Pizza personnalisée",
-      ingredients: selectedIngredients.map(i => i.name),
+      ingredients: selectedIngredients.map((i) => i.name),
       price: basePrice,
-    };
-    dispatch(addPizza(newPizza));
-  };
+    }
+    dispatch(addPizza(newPizza))
+  }
 
   return (
     <motion.div
@@ -46,12 +48,14 @@ export default function CustomPizza () {
       className="custom-pizza-container"
     >
       <h2 className="custom-pizza-title">🍕 Compose ta pizza</h2>
-      <p className="base-price">Base: $5</p>
+      <p className="base-price">Base: 5 €</p>
 
       <div className="ingredients-list">
         {ingredientsList.map((ingredient) => (
           <label key={ingredient.name} className="ingredient-item">
-            <span>{ingredient.name} (+${ingredient.price})</span>
+            <span>
+              {ingredient.name} ( + {ingredient.price} € )
+            </span>
             <input
               type="checkbox"
               checked={selectedIngredients.includes(ingredient)}
@@ -61,15 +65,11 @@ export default function CustomPizza () {
         ))}
       </div>
 
-      <p className="total-price">Prix total: ${basePrice.toFixed(2)}</p>
+      <p className="total-price">Prix total: {basePrice.toFixed(2)} € </p>
 
-      <button
-        onClick={handleAddToCart}
-        className="add-to-cart-btn"
-      >
+      <button onClick={handleAddToCart} className="add-to-cart-btn">
         Ajouter au panier 🛒
       </button>
     </motion.div>
-  );
-};
-
+  )
+}

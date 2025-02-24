@@ -12,7 +12,7 @@ export default function Navbar () {
       </Link>
       
       <Link to="/cart">
-        <button className="cart-total">🛒 $ {total.toFixed(2)}</button>
+        <button className="cart-total">🛒 {total.toFixed(2)} € </button>
       </Link>
     </nav>
   );

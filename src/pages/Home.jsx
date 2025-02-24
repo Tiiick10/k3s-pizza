@@ -30,7 +30,7 @@ export default function Home() {
                 />
                 <div className="pizza-details">
                   <h3 className="pizza-name">{pizza.name}</h3>
-                  <p className="pizza-price">${pizza.price}</p>
+                  <p className="pizza-price">{pizza.price} € </p>
                   <Link to={`/pizza/${pizza.id}`} className="pizza-link">
                     Voir plus →
                   </Link>

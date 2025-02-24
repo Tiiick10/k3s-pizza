@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   items: [],
@@ -6,34 +6,32 @@ const initialState = {
 }
 
 const cartSlice = createSlice({
-  name: "cart",
+  name: 'cart',
   initialState,
   reducers: {
     addPizza: (state, action) => {
-      const existingPizza = state.items.find(p => p.id === action.payload.id)
-    
+      const pizza = action.payload
+      const existingPizza = state.items.find(p => p.uniqueKey === pizza.uniqueKey)
+
       if (existingPizza) {
-        existingPizza.quantity += 1
+        existingPizza.quantity += pizza.quantity
       } else {
-        state.items.push({ ...action.payload, quantity: 1 })
+        state.items.push(pizza)
       }
-    
-      state.totalPrice += action.payload.price
+
+      state.totalPrice = state.items.reduce(
+        (total, pizza) => total + pizza.price * pizza.quantity,
+        0
+      )
     },
-    
     removePizza: (state, action) => {
-      const existingPizza = state.items.find(p => p.id === action.payload)
-    
-      if (existingPizza) {
-        if (existingPizza.quantity > 1) {
-          existingPizza.quantity -= 1
-        } else {
-          state.items = state.items.filter(p => p.id !== action.payload)
-        }
-        state.totalPrice -= existingPizza.price
-      }
+      const pizzaKey = action.payload
+      state.items = state.items.filter(pizza => pizza.uniqueKey !== pizzaKey)
+      state.totalPrice = state.items.reduce(
+        (total, pizza) => total + pizza.price * pizza.quantity,
+        0
+      )
     },
-    
   },
 })
 
